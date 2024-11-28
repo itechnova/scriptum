@@ -1,0 +1,19 @@
+{
+    "name": "itechnova/scriptum",
+    "description": "Framework para desarrollo de plugins de WordPress",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Itechnova\\Scriptum\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jorge Mendoza",
+            "email": "me@jorgmendoz.cl"
+        }
+    ],
+    "require": {},
+    "version": "1.0.0"
+}

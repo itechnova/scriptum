@@ -1,0 +1,41 @@
+services:
+  wordpress:
+    image: wordpress:php8.2-apache
+    container_name: wordpress_dev
+    volumes:
+      - ../wordpress:/var/www/html
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: root
+      WORDPRESS_DB_NAME: wordpress
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+  db:
+    image: mysql:8.0
+    container_name: wordpress_db
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - db_data:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin_dev
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8081:80"
+  
+
+volumes:
+  db_data:
